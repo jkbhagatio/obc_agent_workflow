@@ -9,6 +9,16 @@ merging back to main.
 
 This repo contains files necessary for and created by this "agentification" process.
 
+---
+
+**High-level workflow overview**: An initial project-level, "single source of truth", "master" PRD
+is created which specifies the project's overview, goals, and domains (for a Python project,
+domains can typically be thought of as somewhere between the level of a single module and a single
+sub-package directory, inclusive). Agents then work on the project in single-domain "changes",
+specified by a change-level "delta" PRD. After the codebase has been updated to implement a
+change, the master PRD is updated to reflect the specs of the delta PRD -- we call this "merging"
+the delta PRD into the master.
+
 ```mermaid
 flowchart TB
     subgraph MASTER["Master PRD (Source of Truth)"]
@@ -50,16 +60,6 @@ flowchart TB
 
     AGENTS --> SHARED
 ```
-
----
-
-**High-level workflow overview**: An initial project-level, "single source of truth", "master" PRD
-is created which specifies the project's overview, goals, and domains (for a Python project,
-domains can typically be thought of as somewhere between the level of a single module and a single
-sub-package directory, inclusive). Agents then work on the project in single-domain "changes",
-specified by a change-level "delta" PRD. After the codebase has been updated to implement a
-change, the master PRD is updated to reflect the specs of the delta PRD -- we call this "merging"
-the delta PRD into the master.
 
 Here I'll exemplify how I agentified the [ETL repo][etl-repo] according to OBC for Claude Code.
 
