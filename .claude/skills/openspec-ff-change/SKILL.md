@@ -1,6 +1,8 @@
 ---
 name: openspec-ff-change
-description: Fast-forward through OpenSpec artifact creation. Use when the user wants to quickly create all artifacts needed for implementation without stepping through each one individually.
+description: >-
+  Fast-forward through OpenSpec artifact creation. Use when the user wants to quickly create
+  all artifacts needed for implementation without stepping through each one individually.
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
@@ -9,9 +11,11 @@ metadata:
   generatedBy: "1.1.1"
 ---
 
-Fast-forward through artifact creation - generate everything needed to start implementation in one go.
+Fast-forward through artifact creation - generate everything needed to start implementation
+in one go.
 
-**Input**: The user's request should include a change name (kebab-case) OR a description of what they want to build.
+**Input**: The user's request should include a change name (kebab-case) OR a description of
+what they want to build.
 
 **Steps**
 
@@ -20,7 +24,8 @@ Fast-forward through artifact creation - generate everything needed to start imp
    Use the **AskUserQuestion tool** (open-ended, no preset options) to ask:
    > "What change do you want to work on? Describe what you want to build or fix."
 
-   From their description, derive a kebab-case name (e.g., "add user authentication" → `add-user-auth`).
+   From their description, derive a kebab-case name (e.g., "add user authentication" →
+   `add-user-auth`).
 
    **IMPORTANT**: Do NOT proceed without understanding what the user wants to build.
 
@@ -63,7 +68,8 @@ Fast-forward through artifact creation - generate everything needed to start imp
 
    b. **Continue until all `applyRequires` artifacts are complete**
       - After creating each artifact, re-run `openspec status --change "<name>" --json`
-      - Check if every artifact ID in `applyRequires` has `status: "done"` in the artifacts array
+      - Check if every artifact ID in `applyRequires` has `status: "done"` in the artifacts
+        array
       - Stop when all `applyRequires` artifacts are done
 
    c. **If an artifact requires user input** (unclear context):
@@ -96,6 +102,7 @@ After completing all artifacts, summarize:
 **Guardrails**
 - Create ALL artifacts needed for implementation (as defined by schema's `apply.requires`)
 - Always read dependency artifacts before creating a new one
-- If context is critically unclear, ask the user - but prefer making reasonable decisions to keep momentum
+- If context is critically unclear, ask the user - but prefer making reasonable decisions to
+  keep momentum
 - If a change with that name already exists, suggest continuing that change instead
 - Verify each artifact file exists after writing before proceeding to next

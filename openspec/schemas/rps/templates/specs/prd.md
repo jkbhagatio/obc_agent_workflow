@@ -3,6 +3,7 @@ Target domain: <domain-name>
 # Delta PRD: <change-title>
 
 ## Overview
+
 - <1–3 sentences: what this delta changes in the target domain>
 
 ## ADDED Requirements
@@ -20,9 +21,11 @@ Use the canonical structure:
 -->
 
 ### Requirement: <requirement-title>
+
 <The system MUST/SHOULD ...>
 
 #### Scenario: <scenario-name>
+
 - **GIVEN** <preconditions>
 - **WHEN** <action>
 - **THEN** <expected result>
@@ -36,9 +39,11 @@ Avoid renaming requirement titles unless absolutely necessary.
 -->
 
 ### Requirement: <existing-requirement-title>
+
 <Updated requirement statement>
 
 #### Scenario: <scenario-name>
+
 - **GIVEN** ...
 - **WHEN** ...
 - **THEN** ...
@@ -52,29 +57,36 @@ List requirements to remove. If none, write "(None)".
 (None)
 
 ## Design
-> Combine requirements ("what") and design ("how") in one document. Keep design scoped to the target domain.
+
+> Combine requirements ("what") and design ("how") in one document. Keep design scoped to the
+> target domain.
 
 ### High-level design
+
 - <component/flow 1>
 - <component/flow 2>
 
 ### Key interfaces / data contracts (if applicable)
+
 - Inputs:
-  - <input contract>
+    - <input contract>
 - Outputs:
-  - <output contract>
+    - <output contract>
 
 ### Code snippets (only for non-obvious parts)
+
 ```python
 # <snippet filename/path (optional)>
 # <minimal snippet illustrating the non-obvious part>
 ```
 
 ### Non-obvious implementation details
+
 - <detail 1>
 - <detail 2>
 
 ### Memory/compute considerations
+
 <compute cost notes>
 <memory cost notes>
 <defaults that bound cost>

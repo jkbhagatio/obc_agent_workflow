@@ -1,6 +1,9 @@
 ---
 name: openspec-new-change
-description: Start a new OpenSpec change using the experimental artifact workflow. Use when the user wants to create a new feature, fix, or modification with a structured step-by-step approach.
+description: >-
+  Start a new OpenSpec change using the experimental artifact workflow. Use when the user
+  wants to create a new feature, fix, or modification with a structured step-by-step
+  approach.
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
@@ -11,7 +14,8 @@ metadata:
 
 Start a new change using the experimental artifact-driven approach.
 
-**Input**: The user's request should include a change name (kebab-case) OR a description of what they want to build.
+**Input**: The user's request should include a change name (kebab-case) OR a description of
+what they want to build.
 
 **Steps**
 
@@ -20,13 +24,15 @@ Start a new change using the experimental artifact-driven approach.
    Use the **AskUserQuestion tool** (open-ended, no preset options) to ask:
    > "What change do you want to work on? Describe what you want to build or fix."
 
-   From their description, derive a kebab-case name (e.g., "add user authentication" → `add-user-auth`).
+   From their description, derive a kebab-case name (e.g., "add user authentication" →
+   `add-user-auth`).
 
    **IMPORTANT**: Do NOT proceed without understanding what the user wants to build.
 
 2. **Determine the workflow schema**
 
-   Use the default schema (omit `--schema`) unless the user explicitly requests a different workflow.
+   Use the default schema (omit `--schema`) unless the user explicitly requests a different
+   workflow.
 
    **Use a different schema only if the user mentions:**
    - A specific schema name → use `--schema <name>`
@@ -64,7 +70,8 @@ After completing the steps, summarize:
 - Schema/workflow being used and its artifact sequence
 - Current status (0/N artifacts complete)
 - The template for the first artifact
-- Prompt: "Ready to create the first artifact? Just describe what this change is about and I'll draft it, or ask me to continue."
+- Prompt: "Ready to create the first artifact? Just describe what this change is about and
+  I'll draft it, or ask me to continue."
 
 **Guardrails**
 - Do NOT create any artifacts yet - just show the instructions

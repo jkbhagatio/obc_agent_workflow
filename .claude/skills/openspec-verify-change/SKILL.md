@@ -1,6 +1,8 @@
 ---
 name: openspec-verify-change
-description: Verify implementation matches change artifacts. Use when the user wants to validate that implementation is complete, correct, and coherent before archiving.
+description: >-
+  Verify implementation matches change artifacts. Use when the user wants to validate that
+  implementation is complete, correct, and coherent before archiving.
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
@@ -11,13 +13,15 @@ metadata:
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).
 
-**Input**: Optionally specify a change name. If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
+**Input**: Optionally specify a change name. If omitted, check if it can be inferred from
+conversation context. If vague or ambiguous you MUST prompt for available changes.
 
 **Steps**
 
 1. **If no change name provided, prompt for selection**
 
-   Run `openspec list --json` to get available changes. Use the **AskUserQuestion tool** to let the user select.
+   Run `openspec list --json` to get available changes. Use the **AskUserQuestion tool** to
+   let the user select.
 
    Show changes that have implementation tasks (tasks artifact exists).
    Include the schema used for each change if available.
@@ -39,7 +43,8 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
    openspec instructions apply --change "<name>" --json
    ```
 
-   This returns the change directory and context files. Read all available artifacts from `contextFiles`.
+   This returns the change directory and context files. Read all available artifacts from
+   `contextFiles`.
 
 4. **Initialize verification report structure**
 
@@ -58,7 +63,8 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
    - Count complete vs total tasks
    - If incomplete tasks exist:
      - Add CRITICAL issue for each incomplete task
-     - Recommendation: "Complete task: <description>" or "Mark as done if already implemented"
+     - Recommendation: "Complete task: <description>" or "Mark as done if already
+       implemented"
 
    **Spec Coverage**:
    - If delta specs exist in `openspec/changes/<name>/specs/`:
@@ -93,7 +99,8 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
 
    **Design Adherence**:
    - If design.md exists in contextFiles:
-     - Extract key decisions (look for sections like "Decision:", "Approach:", "Architecture:")
+     - Extract key decisions (look for sections like "Decision:", "Approach:",
+       "Architecture:")
      - Verify implementation follows those decisions
      - If contradiction detected:
        - Add WARNING: "Design decision not followed: <decision>"
@@ -140,16 +147,19 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
 
    **Final Assessment**:
    - If CRITICAL issues: "X critical issue(s) found. Fix before archiving."
-   - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive (with noted improvements)."
+   - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive
+     (with noted improvements)."
    - If all clear: "All checks passed. Ready for archive."
 
 **Verification Heuristics**
 
 - **Completeness**: Focus on objective checklist items (checkboxes, requirements list)
-- **Correctness**: Use keyword search, file path analysis, reasonable inference - don't require perfect certainty
+- **Correctness**: Use keyword search, file path analysis, reasonable inference - don't
+  require perfect certainty
 - **Coherence**: Look for glaring inconsistencies, don't nitpick style
 - **False Positives**: When uncertain, prefer SUGGESTION over WARNING, WARNING over CRITICAL
-- **Actionability**: Every issue must have a specific recommendation with file/line references where applicable
+- **Actionability**: Every issue must have a specific recommendation with file/line
+  references where applicable
 
 **Graceful Degradation**
 

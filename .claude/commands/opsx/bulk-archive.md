@@ -7,7 +7,8 @@ tags: [workflow, archive, experimental, bulk]
 
 Archive multiple completed changes in a single operation.
 
-This skill allows you to batch-archive changes, handling spec conflicts intelligently by checking the codebase to determine what's actually implemented.
+This skill allows you to batch-archive changes, handling spec conflicts intelligently by
+checking the codebase to determine what's actually implemented.
 
 **Input**: None required (prompts for selection)
 
@@ -59,7 +60,8 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
 
    **For each conflict**, investigate the codebase:
 
-   a. **Read the delta specs** from each conflicting change to understand what each claims to add/modify
+   a. **Read the delta specs** from each conflicting change to understand what each claims to
+      add/modify
 
    b. **Search the codebase** for implementation evidence:
       - Look for code implementing requirements from each delta spec

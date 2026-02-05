@@ -18,6 +18,9 @@ development:
 Together: OpenSpec provides project specs, beads provides issue tracking, and coordination yamls
 provide multi-agent coordination.
 
+See the quick reference sections below for details on OpenSpec, beads-rust, and beads-viewer
+commands.
+
 ### Key definitions
 
 - **PRD / spec**: These terms are used interchangeably throughout this document. Both refer to
@@ -53,7 +56,7 @@ provide multi-agent coordination.
   "Hey, you're `<agent-name>`, excited to be working with you on this project! I'd like you to
   help me implement `<change-name>`. `<change-description>`..."
 - **Commands to use**: Make extensive use of OpenSpec, beads-rust, beads-viewer, and the
-  `.coordination/` directory throughout this workflow. See the quick reference sections below.
+  `.coordination/` directory throughout this workflow.
     - **3rd-party CLIs**: The CLIs for OpenSpec, beads-rust, and beads-viewer are already
       installed. See the source code in `~/agent_tool_repos/` for questions or issues.
     - **Slash commands**: Use `/feature-dev` and `/requesting-code-review` commands as detailed
@@ -96,21 +99,18 @@ After the human initiates a conversation that triggers this workflow:
       updates while a conflict exists or while blocked. If still blocked after 10 minutes,
       message the human for guidance on how to proceed.
 3. **Start change**: Use OpenSpec's `/opsx:` commands (`explore`, `new`, `continue`, `ff`) to
-   start a change and generate artifacts. See the [openspec quick reference](#openspec-quick-reference)
-   below.
+   start a change and generate artifacts.
     - Optionally use `/feature-dev` here as helpful.
 4. **Go from change specs to beads issues**: Once the final OpenSpec "specs" artifact is
    generated, convert it into beads issues using `br` commands. Do not use "tasks" within
-   OpenSpec—beads replaces this functionality. See the [beads-rust quick reference](#beads-rust-quick-reference)
-   below.
+   OpenSpec—beads replaces this functionality.
     - **Issue granularity**: Create one beads issue per scenario. If a requirement has zero or
       one scenarios, create one issue for that requirement instead.
-    - Use `bv` commands alongside `br` to organize beads issues. See the [beads-viewer quick reference](#beads-viewer-quick-reference)
-      below.
+    - Use `bv` commands alongside `br` to organize beads issues.
 5. **Implement and verify change-related updates**: Work on beads issues until all issues related
    to this change are closed.
     - Use `/opsx:verify` alongside `br` and `bv` commands to validate implementation.
-    - Do not use `/opsx:apply`—beads manages tasks/issues under a change instead.
+    - Do not use `/opsx:apply` —- beads manages tasks/issues under a change instead.
 
 #### Discovering additional tasks when working on a change
 
@@ -414,5 +414,5 @@ bv --robot-label-health | jq '.results.labels[] | select(.health_level == "criti
 **Performance:** Phase 1 instant, Phase 2 async (500ms timeout). Prefer `--robot-plan` over
 `--robot-insights` when speed matters. Results cached by data hash.
 
-Use `bv` instead of parsing `beads.jsonl`—it computes PageRank, critical paths, cycles, and
+Use `bv` instead of parsing `beads.jsonl` —- it computes PageRank, critical paths, cycles, and
 parallel tracks deterministically.

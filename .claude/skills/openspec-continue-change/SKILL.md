@@ -1,6 +1,8 @@
 ---
 name: openspec-continue-change
-description: Continue working on an OpenSpec change by creating the next artifact. Use when the user wants to progress their change, create the next artifact, or continue their workflow.
+description: >-
+  Continue working on an OpenSpec change by creating the next artifact. Use when the user
+  wants to progress their change, create the next artifact, or continue their workflow.
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
@@ -11,13 +13,15 @@ metadata:
 
 Continue working on a change by creating the next artifact.
 
-**Input**: Optionally specify a change name. If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
+**Input**: Optionally specify a change name. If omitted, check if it can be inferred from
+conversation context. If vague or ambiguous you MUST prompt for available changes.
 
 **Steps**
 
 1. **If no change name provided, prompt for selection**
 
-   Run `openspec list --json` to get available changes sorted by most recently modified. Then use the **AskUserQuestion tool** to let the user select which change to work on.
+   Run `openspec list --json` to get available changes sorted by most recently modified. Then
+   use the **AskUserQuestion tool** to let the user select which change to work on.
 
    Present the top 3-4 most recently modified changes as options, showing:
    - Change name
@@ -25,7 +29,8 @@ Continue working on a change by creating the next artifact.
    - Status (e.g., "0/5 tasks", "complete", "no tasks")
    - How recently it was modified (from `lastModified` field)
 
-   Mark the most recently modified change as "(Recommended)" since it's likely what the user wants to continue.
+   Mark the most recently modified change as "(Recommended)" since it's likely what the user
+   wants to continue.
 
    **IMPORTANT**: Do NOT guess or auto-select a change. Always let the user choose.
 
@@ -66,7 +71,8 @@ Continue working on a change by creating the next artifact.
    - **Create the artifact file**:
      - Read any completed dependency files for context
      - Use `template` as the structure - fill in its sections
-     - Apply `context` and `rules` as constraints when writing - but do NOT copy them into the file
+     - Apply `context` and `rules` as constraints when writing - but do NOT copy them into
+       the file
      - Write to the output path specified in instructions
    - Show what was created and what's now unlocked
    - STOP after creating ONE artifact
@@ -93,14 +99,17 @@ After each invocation, show:
 
 **Artifact Creation Guidelines**
 
-The artifact types and their purpose depend on the schema. Use the `instruction` field from the instructions output to understand what to create.
+The artifact types and their purpose depend on the schema. Use the `instruction` field from
+the instructions output to understand what to create.
 
 Common artifact patterns:
 
 **spec-driven schema** (proposal → specs → design → tasks):
-- **proposal.md**: Ask user about the change if not clear. Fill in Why, What Changes, Capabilities, Impact.
+- **proposal.md**: Ask user about the change if not clear. Fill in Why, What Changes,
+  Capabilities, Impact.
   - The Capabilities section is critical - each capability listed will need a spec file.
-- **specs/<capability>/spec.md**: Create one spec per capability listed in the proposal's Capabilities section (use the capability name, not the change name).
+- **specs/<capability>/spec.md**: Create one spec per capability listed in the proposal's
+  Capabilities section (use the capability name, not the change name).
 - **design.md**: Document technical decisions, architecture, and implementation approach.
 - **tasks.md**: Break down implementation into checkboxed tasks.
 

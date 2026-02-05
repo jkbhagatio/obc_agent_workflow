@@ -7,7 +7,8 @@ tags: [workflow, artifacts, experimental]
 
 Start a new change using the experimental artifact-driven approach.
 
-**Input**: The argument after `/opsx:new` is the change name (kebab-case), OR a description of what the user wants to build.
+**Input**: The argument after `/opsx:new` is the change name (kebab-case), OR a description
+of what the user wants to build.
 
 **Steps**
 
@@ -16,13 +17,15 @@ Start a new change using the experimental artifact-driven approach.
    Use the **AskUserQuestion tool** (open-ended, no preset options) to ask:
    > "What change do you want to work on? Describe what you want to build or fix."
 
-   From their description, derive a kebab-case name (e.g., "add user authentication" → `add-user-auth`).
+   From their description, derive a kebab-case name (e.g., "add user authentication" →
+   `add-user-auth`).
 
    **IMPORTANT**: Do NOT proceed without understanding what the user wants to build.
 
 2. **Determine the workflow schema**
 
-   Use the default schema (omit `--schema`) unless the user explicitly requests a different workflow.
+   Use the default schema (omit `--schema`) unless the user explicitly requests a different
+   workflow.
 
    **Use a different schema only if the user mentions:**
    - A specific schema name → use `--schema <name>`
@@ -44,7 +47,8 @@ Start a new change using the experimental artifact-driven approach.
    This shows which artifacts need to be created and which are ready (dependencies satisfied).
 
 5. **Get instructions for the first artifact**
-   The first artifact depends on the schema. Check the status output to find the first artifact with status "ready".
+   The first artifact depends on the schema. Check the status output to find the first
+   artifact with status "ready".
    ```bash
    openspec instructions <first-artifact-id> --change "<name>"
    ```
@@ -59,7 +63,8 @@ After completing the steps, summarize:
 - Schema/workflow being used and its artifact sequence
 - Current status (0/N artifacts complete)
 - The template for the first artifact
-- Prompt: "Ready to create the first artifact? Run `/opsx:continue` or just describe what this change is about and I'll draft it."
+- Prompt: "Ready to create the first artifact? Run `/opsx:continue` or just describe what
+  this change is about and I'll draft it."
 
 **Guardrails**
 - Do NOT create any artifacts yet - just show the instructions

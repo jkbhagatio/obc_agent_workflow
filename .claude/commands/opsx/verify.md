@@ -7,13 +7,16 @@ tags: [workflow, verify, experimental]
 
 Verify that an implementation matches the change artifacts (specs, tasks, design).
 
-**Input**: Optionally specify a change name after `/opsx:verify` (e.g., `/opsx:verify add-auth`). If omitted, check if it can be inferred from conversation context. If vague or ambiguous you MUST prompt for available changes.
+**Input**: Optionally specify a change name after `/opsx:verify` (e.g.,
+`/opsx:verify add-auth`). If omitted, check if it can be inferred from conversation context.
+If vague or ambiguous you MUST prompt for available changes.
 
 **Steps**
 
 1. **If no change name provided, prompt for selection**
 
-   Run `openspec list --json` to get available changes. Use the **AskUserQuestion tool** to let the user select.
+   Run `openspec list --json` to get available changes. Use the **AskUserQuestion tool** to
+   let the user select.
 
    Show changes that have implementation tasks (tasks artifact exists).
    Include the schema used for each change if available.
@@ -35,7 +38,8 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
    openspec instructions apply --change "<name>" --json
    ```
 
-   This returns the change directory and context files. Read all available artifacts from `contextFiles`.
+   This returns the change directory and context files. Read all available artifacts from
+   `contextFiles`.
 
 4. **Initialize verification report structure**
 
@@ -136,16 +140,19 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
 
    **Final Assessment**:
    - If CRITICAL issues: "X critical issue(s) found. Fix before archiving."
-   - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive (with noted improvements)."
+   - If only warnings: "No critical issues. Y warning(s) to consider. Ready for archive
+     (with noted improvements)."
    - If all clear: "All checks passed. Ready for archive."
 
 **Verification Heuristics**
 
 - **Completeness**: Focus on objective checklist items (checkboxes, requirements list)
-- **Correctness**: Use keyword search, file path analysis, reasonable inference - don't require perfect certainty
+- **Correctness**: Use keyword search, file path analysis, reasonable inference - don't
+  require perfect certainty
 - **Coherence**: Look for glaring inconsistencies, don't nitpick style
 - **False Positives**: When uncertain, prefer SUGGESTION over WARNING, WARNING over CRITICAL
-- **Actionability**: Every issue must have a specific recommendation with file/line references where applicable
+- **Actionability**: Every issue must have a specific recommendation with file/line
+  references where applicable
 
 **Graceful Degradation**
 

@@ -1,6 +1,7 @@
 ---
 name: openspec-bulk-archive-change
-description: Archive multiple completed changes at once. Use when archiving several parallel changes.
+description: >-
+  Archive multiple completed changes at once. Use when archiving several parallel changes.
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
@@ -11,7 +12,8 @@ metadata:
 
 Archive multiple completed changes in a single operation.
 
-This skill allows you to batch-archive changes, handling spec conflicts intelligently by checking the codebase to determine what's actually implemented.
+This skill allows you to batch-archive changes, handling spec conflicts intelligently by
+checking the codebase to determine what's actually implemented.
 
 **Input**: None required (prompts for selection)
 
@@ -63,7 +65,8 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
 
    **For each conflict**, investigate the codebase:
 
-   a. **Read the delta specs** from each conflicting change to understand what each claims to add/modify
+   a. **Read the delta specs** from each conflicting change to understand what each claims to
+      add/modify
 
    b. **Search the codebase** for implementation evidence:
       - Look for code implementing requirements from each delta spec
