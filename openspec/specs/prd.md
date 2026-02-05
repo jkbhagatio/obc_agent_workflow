@@ -2,154 +2,105 @@
 
 ## Overview
 
-This project builds **multimodal foundation models trained on neural data**, with a focus on
-learning representations that unify neural recordings with aligned modalities (e.g., behavior,
-video, stimuli, task variables, text/metadata) and enabling robust downstream evaluation. A core
-deliverable is a reproducible training + inference stack, plus benchmark-facing tooling
-(including CodaBench submissions).
+<1–3 sentences describing the project's purpose, core deliverables, and key focus areas>
 
 ## Goals
 
-- Train scalable multimodal foundation models that learn useful, general representations from
-  neural data.
-- Support rigorous, reproducible evaluation across standardized benchmarks and internal tasks.
-- Make experimentation fast: clear configs, modular architectures, deterministic pipelines where
-  feasible.
-- Keep the codebase extensible: new modalities, datasets, model variants, and evaluation tasks
-  should be easy to add.
+- <goal 1: what the project aims to achieve>
+- <goal 2: quality or process attributes>
+- <goal 3: developer experience / iteration speed>
+- <goal 4: extensibility / maintainability>
 
 ## References
 
-- (Project-level references: dataset standards, benchmark specs, relevant papers, internal docs)
+- <project-level references: dataset standards, API specs, relevant papers, internal docs>
 
 ---
 
-## Domain: codabench
+## Domain: <domain-name-1>
 
 ### Overview
 
-Code related to training models and generating/uploading predictions to CodaBench for
-standardized evaluation. This domain must support reproducible training, deterministic inference,
-correct submission output formatting, and easy iteration on model architectures.
+<1–3 sentences describing this domain's scope and responsibilities within the project>
 
 ### Goals
 
-- Make it easy to iterate on model architectures without rewriting the submission pipeline.
-- Ensure submission artifacts are self-contained (weights + config + entrypoint).
-- Keep inference deterministic and resource-bounded by default.
+- <domain goal 1>
+- <domain goal 2>
+- <domain goal 3>
 
-### Requirement: Config-driven model selection via registry
+### Requirement: <requirement-title-1>
 
-The codabench pipeline MUST select the model architecture via configuration and instantiate
-models through a registry (string name → constructor).
+<The system MUST/SHOULD ... requirement statement describing the expected behavior>
 
-#### Scenario: Select PatchFormer by config
+#### Scenario: <scenario-name-1a>
 
-- **GIVEN** a config with `model.name = "patchformer"`
-- **WHEN** the training or inference entrypoint initializes the model
-- **THEN** PatchFormer is constructed with configured hyperparameters
-- **AND** no code changes are required outside config to switch architectures
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
+- **AND** <additional expected result (optional)>
 
-#### Scenario: Unknown model name
+#### Scenario: <scenario-name-1b>
 
-- **GIVEN** a config with an unknown `model.name`
-- **WHEN** the entrypoint initializes the model
-- **THEN** initialization fails with a clear error listing valid model names
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
 
-### Requirement: PatchFormer architecture is available for sequence/time-series inputs
+### Requirement: <requirement-title-2>
 
-The codabench domain MUST include a PatchFormer model architecture suitable for
-sequence/time-series style inputs, implemented with minimal dependencies.
+<The system MUST/SHOULD ... requirement statement>
 
-#### Scenario: Forward pass shape contract
+#### Scenario: <scenario-name-2a>
 
-- **GIVEN** a batch of inputs shaped according to the codabench data contract
-- **WHEN** PatchFormer runs a forward pass
-- **THEN** the output tensor matches the expected prediction shape for the task
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
 
-#### Scenario: Configurable patching knobs
+#### Scenario: <scenario-name-2b>
 
-- **GIVEN** a PatchFormer config specifying `patch_len` and `patch_stride`
-- **WHEN** the model is instantiated
-- **THEN** the model uses those values to form patch tokens
-- **AND** changing them changes the effective token length (and compute)
-
-### Requirement: Submission-safe checkpoint and config packaging
-
-The codabench submission artifacts MUST include everything required for inference: model weights,
-model config (including architecture choice), and a deterministic inference entrypoint.
-
-#### Scenario: Inference round-trip
-
-- **GIVEN** a trained checkpoint and its config
-- **WHEN** inference loads them in a fresh environment
-- **THEN** it produces predictions in the required output format
-
-#### Scenario: Deterministic inference
-
-- **GIVEN** a fixed seed and fixed checkpoint/config
-- **WHEN** inference runs twice on identical input
-- **THEN** predictions are identical (within floating tolerance if applicable)
-
-### Requirement: Inference entrypoint preserves backwards compatibility
-
-The codabench inference entrypoint MUST preserve existing behavior for the current default model
-when configured to use it.
-
-#### Scenario: Default architecture unchanged
-
-- **GIVEN** a config selecting the legacy/default architecture
-- **WHEN** inference runs
-- **THEN** output formatting and semantics match the previous baseline behavior
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
+- **AND** <additional expected result (optional)>
 
 ### References
 
-- (Domain references: benchmark rules, submission format docs, scoring protocol, internal
-  baseline notes)
+- <domain references: relevant docs, standards, protocols, internal notes>
 
 ---
 
-## Domain: scripts
+## Domain: <domain-name-2>
 
 ### Overview
 
-Project scripts and CLI tooling that support common workflows: dataset preparation, training
-runs, evaluation, artifact packaging, and experiment bookkeeping.
+<1–3 sentences describing this domain's scope and responsibilities>
 
 ### Goals
 
-- Provide stable entrypoints for repeatable workflows.
-- Keep scripts composable, testable, and predictable.
-- Prefer configs over ad-hoc flags for complex workflows.
+- <domain goal 1>
+- <domain goal 2>
+- <domain goal 3>
 
-### Requirement: Scripts are runnable in the project environment
+### Requirement: <requirement-title>
 
-Scripts MUST be runnable via the project's standard environment tooling (e.g., `uv run ...`) and
-fail with actionable error messages on missing dependencies or invalid inputs.
+<The system MUST/SHOULD ... requirement statement>
 
-#### Scenario: Run script successfully
+#### Scenario: <scenario-name>
 
-- **GIVEN** a valid invocation and required inputs
-- **WHEN** the script is executed
-- **THEN** it completes successfully and produces expected outputs
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
 
-#### Scenario: Invalid arguments
+### Requirement: <requirement-title>
 
-- **GIVEN** invalid arguments
-- **WHEN** the script is executed
-- **THEN** it prints usage/help and exits non-zero
+<The system MUST/SHOULD ... requirement statement>
 
-### Requirement: Script outputs are deterministic when applicable
+#### Scenario: <scenario-name>
 
-When scripts generate artifacts intended for downstream automation (e.g., packaged checkpoints,
-prediction files), they SHOULD be deterministic given fixed inputs/config.
-
-#### Scenario: Stable output on repeated runs
-
-- **GIVEN** identical inputs and config
-- **WHEN** the script is executed twice
-- **THEN** the produced artifacts match (byte-for-byte when feasible)
+- **GIVEN** <preconditions>
+- **WHEN** <action or trigger>
+- **THEN** <expected result>
 
 ### References
 
-- (Domain references: CLI conventions, internal runbooks, experiment tracking docs)
+- <domain references: conventions, runbooks, tracking docs>
