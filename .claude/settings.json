@@ -17,7 +17,8 @@
       "Bash(mv:*)",
       "Bash(rm:*)",
       "Bash(ln:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(awk:*)"
     ]
   }
 }
