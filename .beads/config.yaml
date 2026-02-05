@@ -1,0 +1,4 @@
+# Beads Project Configuration
+issue_prefix: bd
+default_priority: 2  # 0=critical, 1=high, 2=medium, 3=low, 4=backlog
+default_type: task  # task, bug, feature, chore, epic

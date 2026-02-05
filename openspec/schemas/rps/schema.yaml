@@ -1,0 +1,25 @@
+name: rps  # research, proposal, specs
+description: |
+  Single-domain change: research → proposal → spec (one file each).
+
+artifacts:
+  - id: research
+    generates: research.md
+    requires: []
+    description: Background research on standards and similar "prior art".
+
+  - id: proposal
+    generates: proposal.md
+    requires: [research]
+    description: Scope, risks, and target domain declaration.
+
+  - id: specs
+    generates: specs/prd.md
+    requires: [proposal]
+    description: Combined requirements + design for this change to the target domain.
+
+# The above generates a delta specs structure of
+# openspec/changes/<change-name>/ 
+#   - research.md
+#   - proposal.md
+#   - specs/prd.md

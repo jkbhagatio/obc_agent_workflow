@@ -1,0 +1,66 @@
+# Purpose: steer OpenSpec artifact generation 
+# Not a full workflow manual -- that's given by `AGENTS.md`.
+
+# - "schema" selects your custom workflow graph (rps: research → proposal → specs/prd.md).
+# - "context" is injected into ALL artifact prompts.
+# - "rules.<artifact_id>" is injected only for that artifact.
+
+# Keep this file short: OpenSpec enforces a context size limit, and large context harms quality.
+
+schema: rps
+
+context: |
+  Top-level goal: reliable ETL across multiple data modalities (behavior/neural/video) with 
+  Ray-based execution.
+
+  This project's OpenSpec conventions:
+  - No `tasks` markdown files; tasks are now handled completely by Beads.
+  - Treat `openspec/specs/prd.md` as the "single source of truth" "master PRD" project spec.
+  - Each change should only target a single domain.
+  - Each change produces a delta spec, `openspec/changes/<change>/specs/prd.md`, which is later 
+    merged into the respective domain header in the"single source of truth" "master PRD".
+  - Each delta spec `prd.md` should explicitly state the single domain it targets at the top of 
+    the file (e.g. `"Target domain: <domain-name>"`).
+  - Prefer minimal, production-quality changes; avoid large refactors unless explicitly requested.
+
+  Project domain names (domain-name: description):
+  - codabench: code related to training models and uploading predictions to Codabench.
+  - scripts: project scripts (e.g. cli tools)
+
+  Execution tracking:
+  - Implementation is tracked in Beads (issues + dependencies).
+  - Coordination for multi-agent work is handled via `.coordination/*.yaml` files.
+
+rules:
+  research:
+    - Do a thorough search for relevant research literature (published papers, repos, blogs, etc.).
+    - Focus on existing implementations and standards of "prior art" research. 
+    - Do a thorough search for relevant python packages and libraries.
+    - Note performance characteristics.
+    - If you cite external standards/tools, summarize only what is necessary and provide references.
+
+  proposal:
+    - State "what", "why", and "impact" of a proposed change.
+    - State target domain. Generally, choose from listed "project domain names" listed above.
+      - Only propose a new domain if it is truly necessary.
+    - State proposed validation (e.g. tests, metrics, importance of new feature, etc.).
+    - Estimate complexity (small/medium/large).
+    - Clearly define scope boundaries (what is in/out).
+    - Reference specific findings from research.
+    - Include a risk section if applicable.
+
+  specs:
+    - Combine requirements ("what") and design ("how") in one document.
+    - You MUST start with "Target domain: <domain-name>" at the top of the file.
+    - Produce a spec that is ready to merge into the respective domain in the master PRD; 
+      use delta format with EXACT `##` headers
+        - `## ADDED Requirements`
+        - `## MODIFIED Requirements`
+        - `## REMOVED Requirements`
+    - Use "given/when/then" scenarios for testable requirements.
+    - Include code snippets for non-obvious implementations.
+    - Note any notable memory/compute efficiency considerations.
+    - Add a final section, "Beads breakdown (execution plan)", that lists
+      - Proposed beads issues (titles + short descriptions)
+      - Dependencies / blockers between issues
+      - Any work that should be done by a different agent (handoff notes)

@@ -1,0 +1,10 @@
+agent: agent-N  # agent name
+worktree: etl-worktrees/agent-N # git worktree directory
+current_change: null  # folder change-name
+status: idle  # idle | researching | planning | implementing | blocked | review-ready
+beads_issue: null # id of beads issue currently working on
+owned_paths: []  # list of files currently being edited, blocked to other agents
+blocked_on: null  # dictionary of (change-names : filenames) agent is blocked on
+needs_human: false  # bool for if edits in this change are ready for human review
+last_updated: null  # YYYY-MM-DD_HH-MM-SS (UTC) of last update within this change
+notes: ""  # Any additional notes helpful for a human or agent to know
