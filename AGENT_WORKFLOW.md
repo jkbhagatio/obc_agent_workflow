@@ -63,7 +63,8 @@ commands.
       below.
 - **Assigned agent name for coordination**: Use the assigned name to coordinate with the human
   and other agents. Find the coordination yaml at `.coordination/agent-<your_name>.yaml`. Only
-  ever update your own yaml file, never the yamls of other agents.
+  ever update your own yaml file, in the main, common dir, never in your agent worktree, and 
+  never the yamls of other agents.
 - **Example coordination yaml template:**
 
 ```yaml
@@ -89,7 +90,7 @@ After the human initiates a conversation that triggers this workflow:
     - Check out a feature branch for this change.
 2. **Coordinate**:
     - When starting a change, and at each agent-step, update your coordination yaml file *in the
-      main worktree* (not your agent worktree) for shared visibility with all agents.
+      main, common dir* (*not* your agent worktree) for shared visibility with all agents.
     - Before proceeding to the next agent-step, consult all other agents' yaml files in
       `.coordination/` to check for potential conflicts. If no conflicts, proceed to "Start
       change".

@@ -8,17 +8,58 @@
       "Bash(xargs:*)",
       "Bash(grep:*)",
       "Bash(python -c:*)",
+      "Bash(uv venv:*)",
       "Bash(uv run python -c:*)",
       "Bash(source:*)",
       "Bash(python3:*)",
       "Bash(sed:*)",
+      "Bash(awk:*)",
       "Bash(mkdir:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(rm:*)",
       "Bash(ln:*)",
       "Bash(chmod:*)",
-      "Bash(awk:*)"
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Notion(*)",
+      "Bash(sort:*)",
+      "Bash(ffprobe:*)",
+      "Bash(du:*)",
+      "Bash(wc:*)",
+      "Bash(spiral whoami:*)",
+      "Bash(spiral projects ls:*)",
+      "Bash(spiral orgs ls:*)",
+      "Bash(spiral projects --help:*)",
+      "Bash(spiral --help:*)",
+      "Bash(spiral tables --help:*)",
+      "Bash(ruff check:*)",
+      "Bash(jq:*)",
+      "mcp__github*",
+      "mcp__notion*",
+      "mcp__slack*",
+      "mcp_linear*",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": [
+      "Bash(git reset:*)",
+      "Bash(git clean:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "timeout": 180,
+            "prompt": "You are a Stop-hook code review gate.\n\nInput: $ARGUMENTS (JSON).\n\n1) If $ARGUMENTS.stop_hook_active is true, return {\"ok\": true} immediately (loop prevention).\n\n2) Compute changed files (staged, unstaged, untracked) vs HEAD:\n   - git diff --name-only --diff-filter=ACMR HEAD\n   - git ls-files --others --exclude-standard\n   Union and de-duplicate.\n\n3) If no files changed, return {\"ok\": true}.\n\n4) Show the user the changed file list and ask if they want a code review. If they decline, return {\"ok\": true}.\n\n5) Review only those files (git diff --patch HEAD -- <files>). Optionally run quick linters/tests (max 60s). Use a Superpowers-style '/requesting-code-review' structured review approach with Critical/Major/Minor/Nit severity levels.\n\n6) Return {\"ok\": false, \"reason\": \"<markdown review report>\"} with: files reviewed, findings by severity, next actions. This forces the main agent to print the review; the subsequent stop_hook_active=true firing will allow stopping.\n"
+          }
+        ]
+      }
     ]
   }
 }

@@ -334,7 +334,8 @@ ln -s "$MAIN_REPO/.beads" "$WORKTREE/.beads"
 ```
 
 I initialized a "Stop" hook that makes the agent spawn a subagent and run `/requesting-code-review`
-on all the edited files since the last commit (if no files edited, nothing should happen).
+if there are any edited files in its worktree since the last commit (if no files edited,
+nothing happens).
 
 I began conversations as:
 "Hey, you're `<agent-name>`, excited to be working with you on this project! I'd like you to help
