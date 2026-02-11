@@ -323,14 +323,18 @@ etl-worktrees/agent-claudius/
 etl-worktrees/agent-claudette/
 ```
 
-In that worktree, I made sure to symlink back to the main common dir for the beads db:
+In that worktree, I made sure to symlink back to the main common dir for the beads db and coordination dir:
 ```bash
 # Setup (run once per worktree)
 MAIN_REPO="/path/to/neuro-etl"
-WORKTREE="/path/to/neuro-etl-agent-1"
+WORKTREE=$(pwd)
 
 rm -rf "$WORKTREE/.beads"
 ln -s "$MAIN_REPO/.beads" "$WORKTREE/.beads"
+
+rm -rf "$WORKTREE/.coordination"
+ln -s "$MAIN_REPO/.coordination" "$WORKTREE/.coordination"
+
 ```
 
 I initialized a "Stop" hook that makes the agent spawn a subagent and run `/requesting-code-review`
