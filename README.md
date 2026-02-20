@@ -98,6 +98,9 @@ First I installed the agent spec frameworks and Claude Code utilities necessary 
    6. ralph-loop
       1. `/ralph-loop`
       2. `/cancel-ralph`
+   7. Claude Code for GitHub and Slack
+      1. `/install-github-app`
+      2. `/install-slack-app`
 
 ---
 
