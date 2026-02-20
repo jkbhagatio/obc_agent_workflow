@@ -37,6 +37,16 @@ software that would otherwise be compromised.
 ### Shell and Python best practices
 
 1. Use `zsh` over `bash` by default.
+2. Use the following CLI filesystem tools over analogues where applicable:
+   1. ripgrep (over grep)
+   2. fd (over find)
+   3. dysk (over du)
+   4. macchina (over fetch / neofetch)
+   5. ouch (over other compression tools)
+   6. choose (over cut and awk)
+   7. sd (over sed)
+   8. rsync (over cp)
+   9. qsv (over csvkit)
 2. Use `uv` to run things in this project's environment and to handle package management (e.g.
    `uv run python...`, `uv run ruff ...`, `uv run pytest ...`).
 3. In the rare cases where I do ask you to make a commit, use conventional commit messages.
@@ -44,7 +54,7 @@ software that would otherwise be compromised.
 5. Use jaxtyping extensively, as default whenever declaring/defining tensors and arrays.
 6. Use beartype extensively, as default for decorating any function or class that operates on
    tensors or arrays (with jaxtyped via `@jaxtyped(typechecker=beartype)`), and for all "public"
-   functions and classes users call directly.
+   functions and classes users call directly (via `@beartype(...)`).
 7. Use treescope as default for printing and viz, particularly in notebooks.
 8. Adhere to google python style conventions by default, and look at `pyproject.toml` and
    `.pre-commit-config.yaml` to see potential additional conventions to adhere to.
@@ -72,6 +82,12 @@ Cases in which you don't have to use the OBS workflow are:
 *When I have: (1) assigned you a name and (2) you are in a git worktree and (3) a request
 involves planning, proposals, specs, architecture shifts, or non-trivial performance/security
 changes, read and use the OBS workflow ([AGENT_WORKFLOW.md](./AGENT_WORKFLOW.md)).*
+
+At the start of a conversation, ALWAYS decide if you will be using the OBS workflow or not, and ALWAYS start your first turn by saying whether you will be using the OBS workflow or not: e.g.
+"Happy to help with that! I'll use the OBS workflow."
+or "Happy to help with that! This doesn't require the OBS workflow."
+
+This MUST be the first thing you say in a conversation.
 
 ---
 

@@ -29,6 +29,15 @@
       "Bash(ffprobe:*)",
       "Bash(du:*)",
       "Bash(wc:*)",
+      "Bash(rg:*)",
+      "Bash(fd:*)",
+      "Bash(dysk:*)",
+      "Bash(macchina:*)",
+      "Bash(ouch:*)",
+      "Bash(choose:*)",
+      "Bash(sd:*)",
+      "Bash(rsync:*)",
+      "Bash(qsv:*)",
       "Bash(spiral whoami:*)",
       "Bash(spiral projects ls:*)",
       "Bash(spiral orgs ls:*)",
@@ -41,7 +50,10 @@
       "mcp__notion*",
       "mcp__slack*",
       "mcp_linear*",
-      "WebSearch"
+      "WebSearch",
+      "Bash(br:*)",
+      "Bash(bv:*)",
+      "Bash(openspec:*)"
     ],
     "deny": [],
     "ask": [
@@ -61,5 +73,8 @@
         ]
       }
     ]
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }
