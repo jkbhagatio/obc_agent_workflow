@@ -61,9 +61,9 @@ commands.
       installed. See the source code in `~/agent_tool_repos/` for questions or issues.
     - **Slash commands**: Use `/feature-dev` and `/requesting-code-review` commands as detailed
       below.
-- **Assigned agent name for coordination**: Use the assigned name to coordinate with the human
+- **Assigned agent name for coordination**: Use the assigned name to coordinate with me
   and other agents. Find the coordination yaml at `.coordination/agent-<your_name>.yaml`. Only
-  ever update your own yaml file, in the main, common dir, never in your agent worktree, and 
+  ever update your own yaml file, in the main, common dir, never in your agent worktree, and
   never the yamls of other agents.
 - **Example coordination yaml template:**
 
@@ -75,14 +75,14 @@ status: idle  # idle | researching | planning | implementing | blocked | review-
 beads_issue: null # id of beads issue currently working on
 owned_paths: []  # list of files currently being edited, blocked to other agents
 blocked_on: null  # blocked on details, if any (e.g. blocking beads issue id, other change-name)
-needs_human: false  # whether edits from this change are ready for human review
+needs_human: false  # whether edits from this change are ready for my review
 last_updated: null  # YYYY-MM-DD_HH-MM-SSZ (UTC) of last update within this change
-notes: ""  # any additional notes helpful for a human or agent to know
+notes: ""  # any additional notes helpful for me or another agent to know
 ```
 
 ### Working on a change
 
-After the human initiates a conversation that triggers this workflow:
+After I initiate a conversation that triggers this workflow:
 
 1. **Create feature branch**:
     - Pull the main branch.
@@ -98,7 +98,7 @@ After the human initiates a conversation that triggers this workflow:
       in your yamls (e.g., state what you're blocked on, what you need, and request a response).
       If you are the blocking agent, respond in your `notes` field. Do not make any project
       updates while a conflict exists or while blocked. If still blocked after 10 minutes,
-      message the human for guidance on how to proceed.
+      message me for guidance on how to proceed.
 3. **Start change**: Use OpenSpec's `/opsx:` commands (`explore`, `new`, `continue`, `ff`) to
    start a change and generate artifacts.
     - Optionally use `/feature-dev` here as helpful.
@@ -156,11 +156,11 @@ When discovering something that blocks current work (e.g., "the base class I nee
     - If the blocker is small and in your domain: fix it and continue.
     - If the blocker is owned by another agent: follow the "if a conflict exists" instructions
       above.
-    - If the blocker is large or outside your domain: stop and message the human.
+    - If the blocker is large or outside your domain: stop and message me.
 
 #### Context switching
 
-If the human asks to pause the current change and work on something else:
+If I ask to pause the current change and work on something else:
 
 1. Update the coordination yaml: set `status: paused` and add a note explaining state.
 2. Run `br sync --flush-only` to save any beads updates.
@@ -170,7 +170,7 @@ If the human asks to pause the current change and work on something else:
 
 #### When to stop and ask
 
-In addition to any already mentioned occasions requiring human input (e.g., before removing or
+In addition to any already mentioned occasions requiring my input (e.g., before removing or
 deleting anything, as mentioned in [`AGENTS.md`](./AGENTS.md)), always stop and ask before
 proceeding for:
 
@@ -189,15 +189,15 @@ proceeding for:
 
 1. **Request sub-agent review**: After finishing "Working on a change" (all beads issues closed),
    run `/requesting-code-review` to have a subagent review the changes. Only after the subagent
-   accepts the changes, present them for human review.
-2. **Request human review**: Request human review on all updates for this change. Continue the
-   conversation until the human accepts the updates.
+   accepts the changes, present them for my review.
+2. **Request human review**: Request my review on all updates for this change. Continue the
+   conversation until I accept the updates.
 3. **Sync and archive change**:
     - Use `/opsx:sync` to merge the delta PRD into the master PRD (`openspec/specs/prd.md`).
       Carefully check the master PRD afterwards to ensure the merge was done properly.
     - Use `/opsx:archive` to archive the change.
     - Reset the coordination yaml file.
-    - Ask the human to do a final review and whether to make a git commit.
+    - Ask me to do a final review and whether to make a git commit.
 
 ### Additional workflow notes
 
