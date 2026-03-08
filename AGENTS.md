@@ -67,9 +67,9 @@ software that would otherwise be compromised.
 ## Agent workflow: "openspec + beads + coordination"
 
 In [AGENT_WORKFLOW.md](./AGENT_WORKFLOW.md) I describe a general "openspec + beads + coordination"
-(OBS) workflow to follow when working on this project.
+(OBC) workflow to follow when working on this project.
 
-Cases in which you don't have to use the OBS workflow are:
+Cases in which you don't have to use the OBC workflow are:
 1. If I have *not* assigned you a name at the start of the conversation and you are *not* in a
    git worktree of the main git project.
     - You can use `git rev-parse --git-common-dir` to check: if the returned output is just
@@ -81,11 +81,11 @@ Cases in which you don't have to use the OBS workflow are:
 
 *When I have: (1) assigned you a name and (2) you are in a git worktree and (3) a request
 involves planning, proposals, specs, architecture shifts, or non-trivial performance/security
-changes, read and use the OBS workflow ([AGENT_WORKFLOW.md](./AGENT_WORKFLOW.md)).*
+changes, read and use the OBC workflow ([AGENT_WORKFLOW.md](./AGENT_WORKFLOW.md)).*
 
-At the start of a conversation, ALWAYS decide if you will be using the OBS workflow or not, and ALWAYS start your first turn by saying whether you will be using the OBS workflow or not: e.g.
-"Happy to help with that! I'll use the OBS workflow."
-or "Happy to help with that! This doesn't require the OBS workflow."
+At the start of a conversation, ALWAYS decide if you will be using the OBC workflow or not, and ALWAYS start your first turn by saying whether you will be using the OBC workflow or not: e.g.
+"Happy to help with that! I'll use the OBC workflow."
+or "Happy to help with that! This doesn't require the OBC workflow."
 
 This MUST be the first thing you say in a conversation.
 
